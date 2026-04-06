@@ -1,0 +1,95 @@
+//LINKED LIST
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+    }
+}
+class LinkedList {
+    Node head;
+    public void insertatstart(int data)
+    {
+    Node newnode=new Node(data);
+    newnode.next=head;
+    head=newnode;
+}
+public void insertatend(int data)
+{
+    Node newnode=new Node(data);
+    Node temp=head;
+    if(head==null)
+    {
+        head=newnode;
+        return;
+    }
+    while(temp.next!=null)
+    {
+        temp=temp.next;
+    }
+    temp.next=newnode;
+}
+public void deleteAtstart()
+{
+    if(head==null)
+    {
+        return;
+    }
+    head=head.next;
+}
+public void deleteAtend()
+{
+    Node temp=head;
+    if(head==null)  return;
+    if(head.next==null)
+    {
+        head=null;
+    }
+    while(temp.next.next!=null)
+    {
+        temp=temp.next;
+    }
+    temp.next=null;
+}
+public void insertAtposition(int position,int data)
+{
+    Node newNode = new Node(data);
+    Node temp=head;
+    for(int i=0;i<position-1;i++)
+    {
+        if(temp==null)
+        {
+            return;
+        }
+        temp=temp.next;
+    }
+    newNode.next=temp.next;
+    temp.next=newNode;
+}
+public void display()
+{
+    Node temp=head;
+    while(temp!=null)
+    {
+        System.out.print(temp.data+"-> ");
+        temp=temp.next;
+    }
+    System.out.println("null");
+}
+}
+public class Linked{
+    public static void main(String[] args)
+    {
+        LinkedList list=new LinkedList();
+        list.insertatstart(10);
+        list.insertatend(30);
+        list.display();
+        // list.deleteAtend();
+        list.display();
+        list.insertAtposition(2, 15);
+        list.display();
+    }
+}
